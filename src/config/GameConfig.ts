@@ -66,5 +66,6 @@ export const SCENE_KEYS = {
   MENU: 'MenuScene',
   GAME: 'GameScene',
   GAME_OVER: 'GameOverScene',
-  HOUSE: 'HouseScene',
+  SHOP: 'ShopScene',
+  MISSION: 'MissionScene',
 } as const;
