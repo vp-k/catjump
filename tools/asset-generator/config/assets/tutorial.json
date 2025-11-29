@@ -1,0 +1,7 @@
+[
+    { "id": "tuto_hand", "category": "tutorial", "type": "hand", "width": 64, "height": 64, "priority": "P0" },
+    { "id": "tuto_arrow", "category": "tutorial", "type": "arrow", "width": 64, "height": 64, "priority": "P0" },
+    { "id": "tuto_highlight", "category": "tutorial", "type": "highlight", "width": 200, "height": 200, "priority": "P0" },
+    { "id": "tuto_perfect_zone", "category": "tutorial", "type": "perfect_zone", "width": 128, "height": 64, "priority": "P0" },
+    { "id": "tuto_speech_bubble", "category": "tutorial", "type": "speech_bubble", "width": 200, "height": 100, "priority": "P1" }
+]

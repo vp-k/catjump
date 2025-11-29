@@ -1,0 +1,110 @@
+[
+    {
+        "id": "icon_coin",
+        "category": "icons",
+        "type": "coin",
+        "color": "coin",
+        "width": 64,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_diamond",
+        "category": "icons",
+        "type": "diamond",
+        "color": "diamond",
+        "width": 64,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_energy",
+        "category": "icons",
+        "type": "heart",
+        "color": "energy",
+        "width": 64,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_star",
+        "category": "icons",
+        "type": "star",
+        "color": "star",
+        "width": 64,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_check",
+        "category": "icons",
+        "type": "check",
+        "color": "check",
+        "width": 48,
+        "height": 48,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_volume",
+        "category": "icons",
+        "type": "volume",
+        "color": "volume",
+        "width": 48,
+        "height": 48,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_music",
+        "category": "icons",
+        "type": "music",
+        "color": "music",
+        "width": 48,
+        "height": 48,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_mission",
+        "category": "icons",
+        "type": "mission",
+        "color": "info",
+        "width": 64,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "icon_trophy",
+        "category": "icons",
+        "type": "trophy",
+        "color": "trophy",
+        "width": 64,
+        "height": 64,
+        "priority": "P1"
+    },
+    {
+        "id": "icon_gift",
+        "category": "icons",
+        "type": "gift",
+        "color": "gift",
+        "width": 64,
+        "height": 64,
+        "priority": "P1"
+    },
+    {
+        "id": "icon_lock",
+        "category": "icons",
+        "type": "lock",
+        "color": "lock",
+        "width": 64,
+        "height": 64,
+        "priority": "P1"
+    },
+    {
+        "id": "icon_info",
+        "category": "icons",
+        "type": "info",
+        "color": "info",
+        "width": 48,
+        "height": 48,
+        "priority": "P1"
+    }
+]

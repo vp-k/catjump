@@ -1,0 +1,64 @@
+{
+    "colors": {
+        "primary": "#4CAF50",
+        "primaryDark": "#388E3C",
+        "secondary": "#FFC107",
+        "secondaryDark": "#FFA000",
+        "accent": "#FF5722",
+        "danger": "#F44336",
+        "text": "#FFFFFF",
+        "textDark": "#333333",
+        "bgDark": "#212121",
+        "bgLight": "#FAFAFA",
+        "grey": "#9E9E9E",
+        "white": "#FFFFFF",
+        "black": "#000000",
+
+        "gold": "#FFD700",
+        "silver": "#C0C0C0",
+        "bronze": "#CD7F32",
+        "platinum": "#E5E4E2",
+        "diamond": "#00CED1",
+
+        "tuna": "#3498db",
+        "salmon": "#FFB6C1",
+        "chicken": "#F1C40F",
+        "beef": "#E74C3C",
+        "mix": "#9B59B6",
+
+        "canGold": "#FFD700",
+        "canWide": "#2ECC71",
+        "canNarrow": "#9B59B6",
+        "canGift": "#FFB6C1",
+        "canShake": "#F39C12",
+
+        "perfect": "#4CAF50",
+        "good": "#FFC107",
+        "miss": "#F44336",
+
+        "coin": "#FFD700",
+        "energy": "#FF6B6B",
+        "star": "#FFD700",
+        "trophy": "#FFD700",
+        "gift": "#FF69B4",
+        "lock": "#607D8B",
+        "check": "#4CAF50",
+        "info": "#2196F3",
+        "volume": "#9C27B0",
+        "music": "#E91E63"
+    },
+    "shadows": {
+        "button": {
+            "x": 0,
+            "y": 4,
+            "blur": 0,
+            "color": "#00000033"
+        },
+        "panel": {
+            "x": 0,
+            "y": 8,
+            "blur": 16,
+            "color": "#0000004D"
+        }
+    }
+}

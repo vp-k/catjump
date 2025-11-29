@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(node dist/cli.js:*)",
+      "Bash(dir:*)",
+      "Bash(npm run generate:*)",
+      "Bash(xxd:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(timeout 5 npm run dev:*)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

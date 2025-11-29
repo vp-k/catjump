@@ -1,0 +1,11 @@
+[
+    { "id": "hud_score_bg", "category": "hud", "type": "score_bg", "width": 150, "height": 50, "priority": "P0" },
+    { "id": "hud_combo_bg", "category": "hud", "type": "combo_bg", "width": 120, "height": 40, "priority": "P0" },
+    { "id": "hud_floor_bg", "category": "hud", "type": "floor_bg", "width": 100, "height": 50, "priority": "P0" },
+    { "id": "hud_energy_empty", "category": "hud", "type": "energy_empty", "width": 48, "height": 48, "priority": "P0" },
+    { "id": "hud_energy_full", "category": "hud", "type": "energy_full", "width": 48, "height": 48, "priority": "P0" },
+    { "id": "hud_energy_timer", "category": "hud", "type": "energy_timer", "width": 80, "height": 30, "priority": "P0" },
+    { "id": "hud_mission_tracker", "category": "hud", "type": "mission_tracker", "width": 150, "height": 40, "priority": "P0" },
+    { "id": "progress_bar_bg", "category": "hud", "type": "progress_bar_bg", "width": 200, "height": 30, "priority": "P0" },
+    { "id": "progress_bar_fill", "category": "hud", "type": "progress_bar_fill", "width": 200, "height": 30, "color": "primary", "priority": "P0" }
+]

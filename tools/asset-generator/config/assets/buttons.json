@@ -1,0 +1,94 @@
+[
+    {
+        "id": "btn_play",
+        "category": "buttons",
+        "text": "PLAY",
+        "color": "primary",
+        "width": 200,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_shop",
+        "category": "buttons",
+        "text": "SHOP",
+        "color": "secondary",
+        "width": 160,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_settings",
+        "category": "buttons",
+        "text": "⚙",
+        "color": "grey",
+        "width": 160,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_close",
+        "category": "buttons",
+        "text": "X",
+        "color": "danger",
+        "width": 48,
+        "height": 48,
+        "style": "rounded",
+        "states": ["normal", "hover", "pressed"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_adwatch",
+        "category": "buttons",
+        "text": "AD",
+        "color": "accent",
+        "width": 200,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_mission",
+        "category": "buttons",
+        "text": "MISSION",
+        "color": "info",
+        "width": 160,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_back",
+        "category": "buttons",
+        "text": "BACK",
+        "color": "grey",
+        "width": 120,
+        "height": 50,
+        "style": "pill",
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P0"
+    },
+    {
+        "id": "btn_share",
+        "category": "buttons",
+        "text": "SHARE",
+        "color": "info",
+        "width": 160,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P1"
+    },
+    {
+        "id": "btn_leaderboard",
+        "category": "buttons",
+        "text": "RANK",
+        "color": "gold",
+        "width": 160,
+        "height": 60,
+        "states": ["normal", "hover", "pressed", "disabled"],
+        "priority": "P1"
+    }
+]

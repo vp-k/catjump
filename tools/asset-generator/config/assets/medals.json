@@ -1,0 +1,6 @@
+[
+    { "id": "medal_bronze", "category": "medals", "type": "bronze", "width": 96, "height": 96, "priority": "P0" },
+    { "id": "medal_silver", "category": "medals", "type": "silver", "width": 96, "height": 96, "priority": "P0" },
+    { "id": "medal_gold", "category": "medals", "type": "gold", "width": 96, "height": 96, "priority": "P0" },
+    { "id": "medal_platinum", "category": "medals", "type": "platinum", "width": 96, "height": 96, "priority": "P0" }
+]

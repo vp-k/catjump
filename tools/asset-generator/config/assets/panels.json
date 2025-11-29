@@ -1,0 +1,9 @@
+[
+    { "id": "panel_basic", "category": "panels", "type": "basic", "width": 350, "height": 400, "style": "rounded", "priority": "P0" },
+    { "id": "panel_header", "category": "panels", "type": "header", "width": 400, "height": 80, "priority": "P0" },
+    { "id": "panel_gameover", "category": "panels", "type": "gameover", "width": 400, "height": 600, "priority": "P0" },
+    { "id": "panel_mission", "category": "panels", "type": "mission", "width": 400, "height": 600, "priority": "P0" },
+    { "id": "panel_login_reward", "category": "panels", "type": "login_reward", "width": 400, "height": 500, "priority": "P0" },
+    { "id": "panel_offline_reward", "category": "panels", "type": "offline_reward", "width": 400, "height": 400, "priority": "P0" },
+    { "id": "panel_ad_preview", "category": "panels", "type": "ad_preview", "width": 350, "height": 200, "priority": "P0" }
+]

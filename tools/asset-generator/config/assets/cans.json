@@ -1,0 +1,102 @@
+[
+    {
+        "id": "can_tuna",
+        "category": "cans",
+        "type": "basic",
+        "baseColor": "tuna",
+        "label": "TUNA",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_salmon",
+        "category": "cans",
+        "type": "basic",
+        "baseColor": "salmon",
+        "label": "SALMON",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_chicken",
+        "category": "cans",
+        "type": "basic",
+        "baseColor": "chicken",
+        "label": "CHICKEN",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_beef",
+        "category": "cans",
+        "type": "basic",
+        "baseColor": "beef",
+        "label": "BEEF",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_mix",
+        "category": "cans",
+        "type": "basic",
+        "baseColor": "mix",
+        "label": "MIX",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_golden",
+        "category": "cans",
+        "type": "special",
+        "baseColor": "canGold",
+        "label": "★",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_wide",
+        "category": "cans",
+        "type": "special",
+        "baseColor": "canWide",
+        "label": "WIDE",
+        "width": 179,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_gift",
+        "category": "cans",
+        "type": "special",
+        "baseColor": "canGift",
+        "label": "GIFT",
+        "width": 128,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_narrow",
+        "category": "cans",
+        "type": "special",
+        "baseColor": "canNarrow",
+        "label": "!",
+        "width": 77,
+        "height": 64,
+        "priority": "P0"
+    },
+    {
+        "id": "can_shake",
+        "category": "cans",
+        "type": "special",
+        "baseColor": "canShake",
+        "label": "~",
+        "width": 128,
+        "height": 64,
+        "priority": "P1"
+    }
+]

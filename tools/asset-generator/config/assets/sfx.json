@@ -1,0 +1,122 @@
+[
+    {
+        "id": "sfx_jump",
+        "category": "sfx",
+        "preset": "jump",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_land_perfect",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_land_good",
+        "category": "sfx",
+        "preset": "hitHurt",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_land_miss",
+        "category": "sfx",
+        "preset": "explosion",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_combo_up",
+        "category": "sfx",
+        "preset": "pickupCoin",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_combo_break",
+        "category": "sfx",
+        "preset": "hitHurt",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_fall",
+        "category": "sfx",
+        "preset": "jump",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_combo_milestone",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_coin_collect",
+        "category": "sfx",
+        "preset": "pickupCoin",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_button_click",
+        "category": "sfx",
+        "preset": "blipSelect",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_popup_open",
+        "category": "sfx",
+        "preset": "blipSelect",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_popup_close",
+        "category": "sfx",
+        "preset": "blipSelect",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_menu_open",
+        "category": "sfx",
+        "preset": "blipSelect",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_new_record",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_game_over",
+        "category": "sfx",
+        "preset": "explosion",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_revival",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P0"
+    },
+    {
+        "id": "sfx_coin_rain",
+        "category": "sfx",
+        "preset": "pickupCoin",
+        "priority": "P1"
+    },
+    {
+        "id": "sfx_gift_open",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P1"
+    },
+    {
+        "id": "sfx_diamond_get",
+        "category": "sfx",
+        "preset": "pickupCoin",
+        "priority": "P1"
+    },
+    {
+        "id": "sfx_level_up",
+        "category": "sfx",
+        "preset": "powerUp",
+        "priority": "P1"
+    }
+]

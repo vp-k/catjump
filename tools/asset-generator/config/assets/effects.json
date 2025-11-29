@@ -1,0 +1,12 @@
+[
+    { "id": "fx_perfect_sparkle", "category": "effects", "type": "perfect_sparkle", "width": 128, "height": 128, "frames": 8, "priority": "P0" },
+    { "id": "fx_good_dust", "category": "effects", "type": "good_dust", "width": 96, "height": 96, "frames": 6, "priority": "P0" },
+    { "id": "fx_land_impact", "category": "effects", "type": "land_impact", "width": 128, "height": 64, "frames": 4, "priority": "P0" },
+    { "id": "fx_screen_flash", "category": "effects", "type": "screen_flash", "width": 64, "height": 64, "priority": "P0" },
+    { "id": "fx_coin_collect", "category": "effects", "type": "coin_collect", "width": 64, "height": 64, "frames": 6, "priority": "P0" },
+    { "id": "fx_combo_burst", "category": "effects", "type": "combo_burst", "width": 128, "height": 128, "priority": "P0" },
+    { "id": "fx_new_record_confetti", "category": "effects", "type": "new_record_confetti", "width": 64, "height": 64, "priority": "P0" },
+    { "id": "fx_new_record_flash", "category": "effects", "type": "new_record_flash", "width": 64, "height": 64, "priority": "P0" },
+    { "id": "fx_ad_loading", "category": "effects", "type": "ad_loading", "width": 128, "height": 128, "frames": 8, "priority": "P0" },
+    { "id": "fx_mission_complete", "category": "effects", "type": "mission_complete", "width": 256, "height": 256, "frames": 12, "priority": "P0" }
+]
