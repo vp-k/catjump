@@ -81,12 +81,14 @@ class TutorialManagerClass {
     const { width, height } = this.scene.cameras.main;
 
     // 딤 배경 (시각적 효과만 - 터치 이벤트는 통과시킴)
-    this.dimBackground = this.scene.add
-      .rectangle(width / 2, height / 2, width, height, 0x000000, TUTORIAL_CONFIG.DIM_ALPHA)
-      .setScrollFactor(0)
-      .setDepth(500);
-    // 주의: setInteractive 제거 - GameScene의 입력이 통과되도록 함
-    // onTap은 GameScene.handleJump에서 호출됨
+    if (TUTORIAL_CONFIG.DIM_ALPHA > 0) {
+      this.dimBackground = this.scene.add
+        .rectangle(width / 2, height / 2, width, height, 0x000000, TUTORIAL_CONFIG.DIM_ALPHA)
+        .setScrollFactor(0)
+        .setDepth(500);
+      // 주의: setInteractive 제거 - GameScene의 입력이 통과되도록 함
+      // onTap은 GameScene.handleJump에서 호출됨
+    }
 
     // 말풍선
     this.createSpeechBubble(step, width / 2, height / 2 - 100);

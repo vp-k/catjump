@@ -359,4 +359,11 @@ export class Cat extends Phaser.Physics.Arcade.Sprite {
   get isInAir(): boolean {
     return this._state === 'jumping' || this._state === 'falling';
   }
+
+  /**
+   * 현재 점프 가능 여부
+   */
+  get canJumpReady(): boolean {
+    return this.canJump;
+  }
 }

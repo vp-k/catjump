@@ -49,6 +49,10 @@ export class GameScene extends Phaser.Scene {
   private ghostUpdateTimer: Phaser.Time.TimerEvent | null = null;
   private readonly GHOST_UPDATE_INTERVAL = 500; // 0.5초마다 고스트 업데이트
 
+  // 스턱 감지
+  private fallingStartTime: number | null = null;
+  private readonly STUCK_TIMEOUT = 3000; // ms
+
   constructor() {
     super({ key: SCENE_KEYS.GAME });
   }
@@ -57,6 +61,7 @@ export class GameScene extends Phaser.Scene {
     // 상태 초기화
     this.isShuttingDown = false;
     this.pendingTimers = [];
+    this.fallingStartTime = null;
 
     // 매니저 초기화
     AudioManager.setScene(this);
@@ -316,6 +321,7 @@ export class GameScene extends Phaser.Scene {
     this.ghostReplay = null;
     this.ghostCat = null;
     this.ghostFloorText = null;
+    this.fallingStartTime = null;
 
     // 디버그 패널 정리
     if (this.debugPanel) {
@@ -1074,6 +1080,9 @@ export class GameScene extends Phaser.Scene {
 
     // 고스트 업데이트는 타이머 기반으로 처리 (성능 최적화)
 
+    // 스턱 상태 감지 (떨어지는데 착지/게임오버가 없는 경우)
+    this.checkFallingStuck(time);
+
     // 카메라 부드럽게 이동
     if (this.cameraTargetY > 0) {
       const currentScroll = this.cameras.main.scrollY;
@@ -1090,6 +1099,26 @@ export class GameScene extends Phaser.Scene {
 
     // 디버그 패널 업데이트
     this.debugPanel.update(time, delta);
+  }
+
+  /**
+   * 떨어지는 상태가 길어질 때 스턱을 감지해 강제로 게임오버 처리
+   */
+  private checkFallingStuck(time: number): void {
+    const body = this.cat.body as Phaser.Physics.Arcade.Body | null;
+    const isFalling = this.cat.isFalling || (body?.velocity.y ?? 0) > 0;
+    const canJump = this.cat.canJumpReady;
+
+    if (isFalling && !canJump) {
+      if (this.fallingStartTime === null) {
+        this.fallingStartTime = time;
+      } else if (time - this.fallingStartTime > this.STUCK_TIMEOUT) {
+        console.warn('[GameScene] Falling stuck detected - forcing game over');
+        this.gameOver();
+      }
+    } else {
+      this.fallingStartTime = null;
+    }
   }
 
   /**

@@ -54,7 +54,7 @@ export const TUTORIAL_CONFIG = {
   AUTO_SKIP_FLOOR: 5,
 
   // 딤 배경 투명도
-  DIM_ALPHA: 0.35,
+  DIM_ALPHA: 0,
 
   // 애니메이션 속도
   FADE_DURATION: 300,
