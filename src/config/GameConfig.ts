@@ -9,7 +9,7 @@ export const GAME_CONFIG = {
   BACKGROUND_COLOR: 0x87ceeb,
 
   // 물리 설정
-  GRAVITY: 800,
+  GRAVITY: 700,
   JUMP_VELOCITY: -500,
 
   // 캔 설정
@@ -66,6 +66,7 @@ export const SCENE_KEYS = {
   MENU: 'MenuScene',
   GAME: 'GameScene',
   GAME_OVER: 'GameOverScene',
+  HOUSE: 'HouseScene',
+  LEADERBOARD: 'LeaderboardScene',
   SHOP: 'ShopScene',
-  MISSION: 'MissionScene',
 } as const;

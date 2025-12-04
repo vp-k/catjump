@@ -45,6 +45,7 @@ export const IMAGE_KEYS = {
   CAN_WIDE: 'can_wide',
   CAN_NARROW: 'can_narrow',
   CAN_SHAKE: 'can_shake',
+  CAN_TRAP: 'can_trap',
 
   // 이펙트
   FX_PERFECT_SPARKLE: 'fx_perfect_sparkle',
@@ -109,6 +110,10 @@ export const IMAGE_KEYS = {
 
 // 오디오 에셋 키
 export const AUDIO_KEYS = {
+  // BGM
+  BGM_MENU: 'bgm_menu',
+  BGM_GAME: 'bgm_game',
+
   // 게임플레이
   SFX_JUMP: 'sfx_jump',
   SFX_LAND: 'sfx_land',
@@ -195,6 +200,7 @@ export function getImageAssets(): Array<{ key: string; path: string }> {
     { key: IMAGE_KEYS.CAN_WIDE, path: 'cans/can_wide.png' },
     { key: IMAGE_KEYS.CAN_NARROW, path: 'cans/can_narrow.png' },
     { key: IMAGE_KEYS.CAN_SHAKE, path: 'cans/can_shake.png' },
+    { key: IMAGE_KEYS.CAN_TRAP, path: 'cans/can_trap.png' },
 
     // 이펙트
     { key: IMAGE_KEYS.FX_PERFECT_SPARKLE, path: 'effects/fx_perfect_sparkle.png' },
@@ -295,5 +301,9 @@ export function getAudioAssets(): Array<{ key: string; path: string }> {
     { key: AUDIO_KEYS.SFX_NEW_RECORD, path: 'sfx_new_record.wav' },
     { key: AUDIO_KEYS.SFX_LEVEL_UP, path: 'sfx_level_up.wav' },
     { key: AUDIO_KEYS.SFX_REVIVAL, path: 'sfx_revival.wav' },
+
+    // BGM
+    { key: AUDIO_KEYS.BGM_MENU, path: 'bgm_menu.mp3' },
+    { key: AUDIO_KEYS.BGM_GAME, path: 'bgm_game.mp3' },
   ];
 }

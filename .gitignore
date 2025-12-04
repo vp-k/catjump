@@ -37,3 +37,6 @@ ios/
 # Firebase
 .firebase/
 firebase-debug.log
+
+# Auto-generated Firebase config for Service Worker
+public/firebase-config.js

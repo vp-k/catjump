@@ -22,6 +22,8 @@ export interface GameStats {
   highFloor: number;
   perfectCount: number;
   maxCombo: number;
+  medals: string[];
+  totalShares?: number;
 }
 
 /**
@@ -76,6 +78,15 @@ export interface RetentionData {
 }
 
 /**
+ * 에너지 데이터
+ */
+export interface EnergyData {
+  current: number;
+  max: number;
+  lastRecoveryTime: number;
+}
+
+/**
  * 전체 저장 데이터
  */
 export interface SaveData {
@@ -86,6 +97,7 @@ export interface SaveData {
   inventory: Inventory;
   missions: MissionProgress;
   retention: RetentionData;
+  energy: EnergyData;
   lastSaved: number;
 }
 
@@ -107,6 +119,7 @@ export const DEFAULT_SAVE_DATA: SaveData = {
     highFloor: 0,
     perfectCount: 0,
     maxCombo: 0,
+    medals: [],
   },
   currency: {
     coins: 0,
@@ -131,6 +144,11 @@ export const DEFAULT_SAVE_DATA: SaveData = {
     currentStreak: 0,
     longestStreak: 0,
     lastClaimedDay: 0,
+  },
+  energy: {
+    current: 5,
+    max: 5,
+    lastRecoveryTime: 0,
   },
   lastSaved: 0,
 };

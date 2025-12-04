@@ -26,7 +26,8 @@
       "@config/*": ["src/config/*"],
       "@ui/*": ["src/ui/*"],
       "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"],
+      "@services/*": ["src/services/*"]
     },
     "types": ["vite/client"]
   },

@@ -80,7 +80,15 @@ const firebaseConfig = {
   measurementId: "G-XXXXXXX"
 };
 ```
-
+const firebaseConfig = {
+  apiKey: "AIzaSyDSnskQmF36rpdeEf2tr54rWKgVNxOIGVk",
+  authDomain: "cat-jump-tower-9e8cd.firebaseapp.com",
+  projectId: "cat-jump-tower-9e8cd",
+  storageBucket: "cat-jump-tower-9e8cd.firebasestorage.app",
+  messagingSenderId: "670979292820",
+  appId: "1:670979292820:web:348927de859b1c786c3e81",
+  measurementId: "G-FKZEEKP9PW"
+};
 ---
 
 ## 3. Firebase 서비스 활성화

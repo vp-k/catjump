@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import { GAME_CONFIG } from '@config/GameConfig';
+import { GAME_CONFIG, DIFFICULTY_CONFIG } from '@config/GameConfig';
 import { IMAGE_KEYS } from '@config/AssetConfig';
 
-export type CanType = 'normal' | 'wide' | 'narrow' | 'golden' | 'shake' | 'gift';
+export type CanType = 'normal' | 'wide' | 'narrow' | 'golden' | 'shake' | 'gift' | 'trap';
 
 interface CanConfig {
   width: number;
@@ -45,6 +45,12 @@ const CAN_CONFIGS: Record<CanType, CanConfig> = {
     coinReward: 10,
     special: true,
   },
+  trap: {
+    width: GAME_CONFIG.CAN_WIDTH,
+    texture: IMAGE_KEYS.CAN_TRAP,
+    coinReward: 0,
+    special: true,
+  },
 };
 
 /**
@@ -58,6 +64,7 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
   private moveSpeed: number;
   private _canWidth: number;
   private _coinReward: number;
+  private specialTween: Phaser.Tweens.Tween | null = null;
 
   constructor(
     scene: Phaser.Scene,
@@ -86,6 +93,7 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
 
   private setupPhysics(): void {
     const body = this.body as Phaser.Physics.Arcade.Body;
+    if (!body) return;
 
     body.setImmovable(true);
     body.setAllowGravity(false);
@@ -99,7 +107,7 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
 
     // 특수 캔 효과
     if (CAN_CONFIGS[this._canType].special) {
-      this.scene.tweens.add({
+      this.specialTween = this.scene.tweens.add({
         targets: this,
         alpha: 0.8,
         duration: 500,
@@ -115,6 +123,7 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
   startMoving(direction: 1 | -1 = 1): void {
     this.moveDirection = direction;
     const body = this.body as Phaser.Physics.Arcade.Body;
+    if (!body) return;
     body.setVelocityX(this.moveSpeed * this.moveDirection);
   }
 
@@ -123,6 +132,7 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
    */
   stopMoving(): void {
     const body = this.body as Phaser.Physics.Arcade.Body;
+    if (!body) return;
     body.setVelocityX(0);
   }
 
@@ -151,24 +161,41 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
     if (this._isStacked) return;
 
     const body = this.body as Phaser.Physics.Arcade.Body;
-    const { width } = this.scene.cameras.main;
+    if (!body) return;
 
-    // 화면 경계에서 방향 전환
-    const halfWidth = this._canWidth / 2;
-    if (this.x <= halfWidth) {
-      this.x = halfWidth;
-      this.moveDirection = 1;
-      body.setVelocityX(this.moveSpeed);
-    } else if (this.x >= width - halfWidth) {
-      this.x = width - halfWidth;
-      this.moveDirection = -1;
-      body.setVelocityX(-this.moveSpeed);
+    // 이동 중일 때만 경계 체크 (성능 최적화)
+    if (body.velocity.x !== 0) {
+      const { width } = this.scene.cameras.main;
+      const halfWidth = this._canWidth / 2;
+
+      // 화면 경계에서 방향 전환
+      if (this.x <= halfWidth) {
+        this.setX(halfWidth);
+        this.moveDirection = 1;
+        body.setVelocityX(this.moveSpeed);
+      } else if (this.x >= width - halfWidth) {
+        this.setX(width - halfWidth);
+        this.moveDirection = -1;
+        body.setVelocityX(-this.moveSpeed);
+      }
     }
 
-    // 흔들리는 캔 효과
-    if (this._canType === 'shake' && !this._isStacked) {
-      this.x += Math.sin(this.scene.time.now * 0.01) * 2;
+    // 흔들리는 캔 효과 - 물리엔진과 충돌하지 않도록 시각적 오프셋만 적용
+    if (this._canType === 'shake' && body.velocity.x !== 0) {
+      const shakeOffset = Math.sin(this.scene.time.now * 0.01) * 2;
+      this.setX(body.x + body.halfWidth + shakeOffset);
     }
+  }
+
+  /**
+   * 리소스 정리
+   */
+  destroy(fromScene?: boolean): void {
+    if (this.specialTween) {
+      this.specialTween.destroy();
+      this.specialTween = null;
+    }
+    super.destroy(fromScene);
   }
 
   /**
@@ -189,13 +216,8 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
       return 'perfect';
     }
 
-    // Good 존 (중앙 70%)
-    const goodZone = halfWidth * GAME_CONFIG.GOOD_ZONE;
-    if (distance <= goodZone) {
-      return 'good';
-    }
-
-    return 'miss';
+    // Good 존 - 캔 위에 있으면 최소 Good (70% 이상도 Good)
+    return 'good';
   }
 
   // Getters
@@ -226,30 +248,42 @@ export class Can extends Phaser.Physics.Arcade.Sprite {
 
 /**
  * 캔 타입 랜덤 생성 (층수에 따른 확률)
+ * DIFFICULTY_CONFIG.SPECIAL_CAN_FLOORS 기반
  */
 export function getRandomCanType(floor: number): CanType {
+  const { SPECIAL_CAN_FLOORS } = DIFFICULTY_CONFIG;
   const random = Math.random();
 
-  // 층수에 따른 확률 조정
-  let wideChance = 0.15;
-  let narrowChance = floor > 10 ? 0.25 : 0.1;
-  const goldenChance = 0.03;
-  let shakeChance = floor > 10 ? 0.1 : 0.02;
-
-  if (floor > 20) {
-    narrowChance = 0.3;
-    shakeChance = 0.15;
-  }
-
-  // 선물 캔은 특정 층에서만
-  if (floor % 10 === 0 && floor > 0) {
+  // 선물 캔은 10층 단위에서만 등장 (25층 이상)
+  if (floor >= SPECIAL_CAN_FLOORS.GIFT && floor % 10 === 0) {
     return 'gift';
   }
 
-  if (random < goldenChance) return 'golden';
-  if (random < goldenChance + shakeChance) return 'shake';
-  if (random < goldenChance + shakeChance + narrowChance) return 'narrow';
-  if (random < goldenChance + shakeChance + narrowChance + wideChance) return 'wide';
+  // 황금캔 확률 (10층 이상)
+  if (floor >= SPECIAL_CAN_FLOORS.GOLDEN && random < 0.05) {
+    return 'golden';
+  }
+
+  // 함정캔 확률 (20층 이상)
+  if (floor >= SPECIAL_CAN_FLOORS.TRAP && random < 0.08) {
+    return 'trap';
+  }
+
+  // 흔들리는캔 확률 (30층 이상)
+  if (floor >= SPECIAL_CAN_FLOORS.WOBBLY && random < 0.12) {
+    return 'shake';
+  }
+
+  // 넓은캔 확률 (15층 이상, 난이도 완화용)
+  if (floor >= SPECIAL_CAN_FLOORS.WIDE && random < 0.15) {
+    return 'wide';
+  }
+
+  // 좁은캔 확률 (층수에 따라 증가)
+  const narrowChance = floor > 20 ? 0.25 : floor > 10 ? 0.15 : 0.05;
+  if (random < narrowChance) {
+    return 'narrow';
+  }
 
   return 'normal';
 }

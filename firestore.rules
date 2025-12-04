@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 사용자 데이터: 본인만 읽기/쓰기 가능
+    match /users/{userId}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 리더보드: 모든 인증 사용자 읽기 가능, 쓰기는 Cloud Functions만
+    match /leaderboard/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Cloud Functions만 쓰기 가능
+    }
+
+    // 주간 리더보드: 동일 규칙
+    match /leaderboard_weekly/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // Rate Limits: Cloud Functions만 접근 가능
+    match /rate_limits/{document=**} {
+      allow read, write: if false;
+    }
+
+    // 멱등성 키: Cloud Functions만 접근 가능
+    match /idempotency_keys/{document=**} {
+      allow read, write: if false;
+    }
+
+    // 예약된 푸시: Cloud Functions만 접근 가능
+    match /scheduled_pushes/{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

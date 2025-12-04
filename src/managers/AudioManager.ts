@@ -7,7 +7,8 @@ import { SaveManager } from './SaveManager';
  */
 class AudioManagerClass {
   private scene: Phaser.Scene | null = null;
-  private sounds: Map<string, Phaser.Sound.BaseSound> = new Map();
+  private currentBgm: Phaser.Sound.BaseSound | null = null;
+  private currentBgmKey: string | null = null;
   private soundEnabled = true;
   private musicEnabled = true;
   private masterVolume = 1.0;
@@ -175,6 +176,83 @@ class AudioManagerClass {
   }
 
   /**
+   * BGM 재생
+   */
+  playBgm(key: string, fadeIn = true): void {
+    if (!this.scene || !this.musicEnabled) return;
+
+    // 같은 BGM이 이미 재생 중이면 무시
+    if (this.currentBgmKey === key && this.currentBgm?.isPlaying) return;
+
+    // 기존 BGM 정지
+    this.stopBgm(fadeIn);
+
+    try {
+      const volume = this._musicVolume * this.masterVolume;
+      this.currentBgm = this.scene.sound.add(key, {
+        loop: true,
+        volume: fadeIn ? 0 : volume,
+      });
+      this.currentBgmKey = key;
+      this.currentBgm.play();
+
+      if (fadeIn) {
+        this.scene.tweens.add({
+          targets: this.currentBgm,
+          volume: volume,
+          duration: 1000,
+        });
+      }
+    } catch (error) {
+      console.warn(`[AudioManager] BGM 재생 실패: ${key}`, error);
+    }
+  }
+
+  /**
+   * BGM 정지
+   */
+  stopBgm(fadeOut = true): void {
+    if (!this.currentBgm) return;
+
+    if (fadeOut && this.scene) {
+      const bgm = this.currentBgm;
+      this.scene.tweens.add({
+        targets: bgm,
+        volume: 0,
+        duration: 500,
+        onComplete: () => {
+          bgm.stop();
+          bgm.destroy();
+        },
+      });
+    } else {
+      this.currentBgm.stop();
+      this.currentBgm.destroy();
+    }
+
+    this.currentBgm = null;
+    this.currentBgmKey = null;
+  }
+
+  /**
+   * BGM 일시정지
+   */
+  pauseBgm(): void {
+    if (this.currentBgm?.isPlaying) {
+      this.currentBgm.pause();
+    }
+  }
+
+  /**
+   * BGM 재개
+   */
+  resumeBgm(): void {
+    if (this.currentBgm?.isPaused) {
+      this.currentBgm.resume();
+    }
+  }
+
+  /**
    * 사운드 ON/OFF
    */
   setSoundEnabled(enabled: boolean): void {
@@ -250,8 +328,10 @@ class AudioManagerClass {
    * 리소스 정리
    */
   cleanup(): void {
+    this.stopBgm(false);
     this.stopAll();
-    this.sounds.clear();
+    this.currentBgm = null;
+    this.currentBgmKey = null;
     this.scene = null;
   }
 }
