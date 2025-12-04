@@ -590,7 +590,14 @@ function getISOWeekId(): string {
 // 푸시 알림 시스템
 // ============================================
 
-const messaging = admin.messaging();
+// Lazy initialization to avoid deployment timeout
+let _messaging: admin.messaging.Messaging | null = null;
+function getMessaging(): admin.messaging.Messaging {
+  if (!_messaging) {
+    _messaging = admin.messaging();
+  }
+  return _messaging;
+}
 
 /**
  * 리텐션 알림 메시지 템플릿
@@ -659,7 +666,7 @@ async function sendPushToUser(
 
     const messageTemplate = RETENTION_MESSAGES[messageType];
 
-    await messaging.send({
+    await getMessaging().send({
       token,
       notification: {
         title: messageTemplate.title,
