@@ -1,5 +1,6 @@
 import { SaveManager } from './SaveManager';
 import { AudioManager } from './AudioManager';
+import { MissionManager } from './MissionManager';
 
 /**
  * 게임 상태
@@ -17,6 +18,7 @@ class GameManagerClass {
   private _maxCombo = 0;
   private _perfectCount = 0;
   private _isNewRecord = false;
+  private _coinsCollectedThisGame = 0;
 
   /**
    * 게임 시작
@@ -29,6 +31,7 @@ class GameManagerClass {
     this._maxCombo = 0;
     this._perfectCount = 0;
     this._isNewRecord = false;
+    this._coinsCollectedThisGame = 0;
 
     console.log('[GameManager] 게임 시작');
   }
@@ -74,11 +77,22 @@ class GameManagerClass {
       this._maxCombo
     );
 
+    // 미션 진행도 업데이트 (상태 초기화 전에 호출!)
+    // coinsCollected는 게임 내 수집만 포함 (메타 보상 제외)
+    MissionManager.updateFromGameResult(
+      this._currentScore,
+      this._currentFloor,
+      this._perfectCount,
+      this._maxCombo,
+      this._coinsCollectedThisGame
+    );
+
     AudioManager.playGameOver();
     console.log('[GameManager] 게임 오버', {
       score: this._currentScore,
       floor: this._currentFloor,
       maxCombo: this._maxCombo,
+      coinsCollected: this._coinsCollectedThisGame,
       isNewRecord: this._isNewRecord,
     });
   }
@@ -135,6 +149,7 @@ class GameManagerClass {
    * 코인 획득
    */
   collectCoin(amount: number): void {
+    this._coinsCollectedThisGame += amount;
     SaveManager.addCoins(amount);
     AudioManager.playCoinCollect();
   }
@@ -166,6 +181,10 @@ class GameManagerClass {
 
   get isNewRecord(): boolean {
     return this._isNewRecord;
+  }
+
+  get coinsCollectedThisGame(): number {
+    return this._coinsCollectedThisGame;
   }
 
   get isPlaying(): boolean {
